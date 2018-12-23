@@ -3,6 +3,8 @@ var cvs = document.getElementById('canvas') //загрузка канваса
 var ctx = cvs.getContext('2d') //определение контекста (2D,3D)
 
 //////переменные/////
+//очки
+var score=0
 //расстояние между трубами
 var gat = 150 
 //координаты птицы
@@ -10,18 +12,24 @@ var xPos = 10
 var yPos =150
 //гравитация
 var grav = 1
+//создание объектов класа audio
+var fly = new Audio()
+var score_audio = new Audio()
 //создание объектов класа image
 var bird = new Image() //объект птица
 var bg = new Image() //объект задник
 var fg = new Image() //объект передник
 var pipeUp = new Image() //объект труба верх
 var pipeBottom = new Image() //объект труба низ
-//создание блоков
+// создание моассива труб
 var pipe=[]
 pipe[0]={
 	x:cvs.width,
 	y:0
 }
+//загрузка звуков
+fly.src="audio/fly.mp3"
+score_audio.src="audio/score.mp3"
 //загрузка изображений
 bird.src = "img/bird.png"//объект птица
 bg.src = "img/bg.png"//объект задник
@@ -33,6 +41,7 @@ document.addEventListener("keydown",moveUp)
 //нажата кнопка вверх
 function moveUp(){
 	yPos-=40
+	fly.play()
 }
 //рисовать объекты
 function draw() {
@@ -57,10 +66,17 @@ function draw() {
 	if (xPos+bird.width>=pipe[i].x 
 		&& xPos<=pipe[i].x+pipeUp.width
 		&& (yPos<=pipe[i].y+pipeUp.height
-			|| yPos+bird.height>=pipe[i].y+pipeUp.height+gat)) {
+			|| yPos+bird.height>=pipe[i].y+pipeUp.height+gat)
+		|| yPos+bird.height>=cvs.height-fg.height
+		|| yPos<=-50) {
 		location.reload()
 	}
 	//*********************проверка столкновения птицы
+	if (pipe[i].x==5) {
+		score++
+		score_audio.stop()
+		score_audio.play()
+	}
 }
 	//*********************закончить ритовать ртубы
 	
@@ -71,6 +87,11 @@ function draw() {
 	ctx.drawImage(bird,xPos,yPos)//нарисовать птицу
 
 	yPos+=grav //падение птицы
+
+	//отображение очков
+	ctx.fileStyle="#000"
+	ctx.font="24px Verdana"
+	ctx.fillText("Очков: "+score,10,cvs.height-20)
 	requestAnimationFrame(draw)//цикл анимации
 }
 
