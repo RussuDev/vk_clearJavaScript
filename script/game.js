@@ -4,7 +4,7 @@ var ctx = cvs.getContext('2d') //определение контекста (2D,3
 
 //////переменные/////
 //расстояние между трубами
-var gat = 90 
+var gat = 150 
 //координаты птицы
 var xPos = 10 
 var yPos =150
@@ -45,7 +45,7 @@ function draw() {
 	for(var i=0;i<pipe.length;i++){
 	ctx.drawImage(pipeUp,pipe[i].x,pipe[i].y)//нарисовать верх труба
 	ctx.drawImage(pipeBottom,pipe[i].x,pipe[i].y+pipeUp.height+gat)//нарисовать низ труба
-	pipe[i].x--
+	pipe[i].x-=1//скорость труб
 	//добавление новых труб
 	if(pipe[i].x==700){
 		pipe.push({
@@ -53,8 +53,17 @@ function draw() {
 			y:Math.floor(Math.random()*pipeUp.height)-pipeUp.height
 		})
 	}
+	//*********************проверка столкновения птицы
+	if (xPos+bird.width>=pipe[i].x 
+		&& xPos<=pipe[i].x+pipeUp.width
+		&& (yPos<=pipe[i].y+pipeUp.height
+			|| yPos+bird.height>=pipe[i].y+pipeUp.height+gat)) {
+		location.reload()
+	}
+	//*********************проверка столкновения птицы
 }
 	//*********************закончить ритовать ртубы
+	
 	ctx.drawImage(fg,0,cvs.height-fg.height,300,118)//нарисовать пердник
 	ctx.drawImage(fg,300,cvs.height-fg.height,300,118)//нарисовать пердник
 	ctx.drawImage(fg,600,cvs.height-fg.height,300,118)//нарисовать пердник
