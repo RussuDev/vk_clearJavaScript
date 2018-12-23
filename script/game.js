@@ -41,6 +41,7 @@ document.addEventListener("keydown",moveUp)
 //нажата кнопка вверх
 function moveUp(){
 	yPos-=40
+	fly.pause()
 	fly.play()
 }
 //рисовать объекты
@@ -74,7 +75,6 @@ function draw() {
 	//*********************проверка столкновения птицы
 	if (pipe[i].x==5) {
 		score++
-		score_audio.stop()
 		score_audio.play()
 	}
 }
