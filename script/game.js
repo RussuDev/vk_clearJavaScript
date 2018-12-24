@@ -91,6 +91,8 @@ function draw() {
 	ctx.fileStyle="#000"
 	ctx.font="24px Verdana"
 	ctx.fillText("Очков: "+score,10,cvs.height-20)
+	console.log('X:'+xPos)
+
 	requestAnimationFrame(draw)//цикл анимации
 }
 
