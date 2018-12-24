@@ -91,6 +91,11 @@ function draw() {
 
 	yPos+=grav //падение птицы
 
+	//костыль птица не умирает от падения
+	if(yPos>=500){
+		location.reload()
+	}
+
 	requestAnimationFrame(draw)//цикл анимации
 }
 
