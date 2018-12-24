@@ -40,7 +40,7 @@ pipeBottom.src = "img/pipeBottom.png"//объект труба низ
 document.addEventListener("keydown",moveUp)
 //нажата кнопка вверх
 function moveUp(){
-	yPos-=40
+	yPos-=25
 	fly.pause()
 	fly.play()
 }
@@ -78,20 +78,18 @@ function draw() {
 	}
 }
 	//*********************закончить ритовать ртубы
-	
+	ctx.drawImage(bird,xPos,yPos)//нарисовать птицу
 	ctx.drawImage(fg,0,cvs.height-fg.height,300,118)//нарисовать пердник
 	ctx.drawImage(fg,300,cvs.height-fg.height,300,118)//нарисовать пердник
 	ctx.drawImage(fg,600,cvs.height-fg.height,300,118)//нарисовать пердник
 	ctx.drawImage(fg,900,cvs.height-fg.height,300,118)//нарисовать пердник
-	ctx.drawImage(bird,xPos,yPos)//нарисовать птицу
-
-	yPos+=grav //падение птицы
-
+	
 	//отображение очков
 	ctx.fileStyle="#000"
 	ctx.font="24px Verdana"
 	ctx.fillText("Очков: "+score,10,cvs.height-20)
-	console.log("Y:"+yPos)
+
+	yPos+=grav //падение птицы
 
 	requestAnimationFrame(draw)//цикл анимации
 }
