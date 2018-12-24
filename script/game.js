@@ -41,8 +41,9 @@ document.addEventListener("keydown",moveUp)
 //нажата кнопка вверх
 function moveUp(){
 	yPos-=25
-	fly.pause()
-	fly.play()
+	fly.pause() 
+	fly.currentTime = 0 
+	fly.play()﻿
 }
 //рисовать объекты
 function draw() {
@@ -90,12 +91,7 @@ function draw() {
 
 	yPos+=grav //падение птицы
 
-	//костыль птица не умирает от падения
-	if(yPos>=500){
-		location.reload()
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-	}
-
+	
 	requestAnimationFrame(draw)//цикл анимации
 }
 
