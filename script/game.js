@@ -64,13 +64,12 @@ function draw() {
 		})
 	}
 	//*********************проверка столкновения птицы
-	if (xPos+bird.width>=pipe[i].x 
-		&& xPos<=pipe[i].x+pipeUp.width
-		&& (yPos<=pipe[i].y+pipeUp.height
-			|| yPos+bird.height>=pipe[i].y+pipeUp.height+gat)
-		|| yPos+bird.height>=cvs.height-fg.height) {
-		location.reload()
-	}
+	 if(xPos + bird.width >= pipe[i].x
+ && xPos <= pipe[i].x + pipeUp.width
+ && (yPos <= pipe[i].y + pipeUp.height
+ || yPos + bird.height >= pipe[i].y + pipeUp.height + gat) || yPos + bird.height >= cvs.height - fg.height) {
+ location.reload(); // Перезагрузка страницы
+ }
 	//*********************проверка столкновения птицы
 	if (pipe[i].x==5) {
 		score++
