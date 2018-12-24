@@ -68,8 +68,7 @@ function draw() {
 		&& xPos<=pipe[i].x+pipeUp.width
 		&& (yPos<=pipe[i].y+pipeUp.height
 			|| yPos+bird.height>=pipe[i].y+pipeUp.height+gat)
-		|| yPos+bird.height>=cvs.height-fg.height
-		|| yPos<=-50) {
+		|| yPos+bird.height>=cvs.height-fg.height) {
 		location.reload()
 	}
 	//*********************проверка столкновения птицы
