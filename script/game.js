@@ -94,6 +94,7 @@ function draw() {
 	//костыль птица не умирает от падения
 	if(yPos>=500){
 		location.reload()
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
 	}
 
 	requestAnimationFrame(draw)//цикл анимации
